@@ -51,6 +51,7 @@ class AlarmView:
         self.toplevel = Toplevel()
         self.toplevel.title('Settings')
         self.toplevel.geometry('+10+10')
+        self.toplevel.focus()
         
         self.lDefaultAlarm = Label(self.toplevel, text='Default Alarm:')
         self.lDefaultAlarm.grid(row = 0)
