@@ -31,7 +31,7 @@ class SmartAlarm(Tkinter.Tk):
         self.setLightColor('DAYLIGHT')
         
         self.initialize()
-        self.overrideredirect(True) #Gets rid of title bar
+        #self.overrideredirect(True) #Gets rid of title bar
 
     def initialize(self):  
         self.updateCalendar()
