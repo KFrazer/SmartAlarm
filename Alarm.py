@@ -133,8 +133,10 @@ class SmartAlarm(Tkinter.Tk):
     def lights(self):
         if self.alarmOn:
             self.alarmOn = False
-            self.sound.communicate('q')
-            self.sound.terminate()
+            if self.sound is not None:
+                self.sound.communicate('q')
+                self.sound.terminate()
+                self.sound = None
         elif self.bulbs_power:
             set_power(self.bulbs, False)
             self.bulbs_power = False
