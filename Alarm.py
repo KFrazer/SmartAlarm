@@ -110,7 +110,6 @@ class SmartAlarm(Tkinter.Tk):
         self.setLightColor('MORNING_BLUE')
         if self.sound is not None:
             self.sound.communicate('q')
-            self.sound.terminate()
             self.sound = None
         self.sound = Popen(['omxplayer', self.settings.alarmSound], stdin=PIPE)
         
@@ -123,7 +122,6 @@ class SmartAlarm(Tkinter.Tk):
             self.sleepOn = True
             if self.sound is not None:
                 self.sound.communicate('q')
-                self.sound.terminate()
                 self.sound = None
             self.sleepCallback = Timer(self.settings.sleepTimer, self.soundAlarm)
             self.sleepCallback.start()
@@ -135,7 +133,6 @@ class SmartAlarm(Tkinter.Tk):
             self.alarmOn = False
             if self.sound is not None:
                 self.sound.communicate('q')
-                self.sound.terminate()
                 self.sound = None
         elif self.bulbs_power:
             set_power(self.bulbs, False)
