@@ -52,6 +52,7 @@ class AlarmView:
         self.toplevel.title('Settings')
         self.toplevel.geometry('+10+10')
         self.toplevel.focus()
+        self.toplevel.overrideredirect(1)
         
         self.lDefaultAlarm = Label(self.toplevel, text='Default Alarm:')
         self.lDefaultAlarm.grid(row = 0)
@@ -84,8 +85,9 @@ class AlarmView:
         self.bEvening.grid(row = 4, column = 1)
         self.bMorning = Button(self.toplevel, text="Blue Light", command=lambda: self.parent.setLightColor('MORNING_BLUE'))
         self.bMorning.grid(row = 4, column = 2)
-        self.bSave = Button(self.toplevel, text='Save Settings', command = self.parent.saveSettings)
+        self.bSave = Button(self.toplevel, text='Save Settings', command = lambda: self.closeToplevel())
         self.bSave.grid(row = 5, column = 2)
         
-    def setLabel(self, key, label):
-        self.labels[key].configure(text=label)
+    def closeToplevel(self):
+        self.parent.saveSettings()
+        self.toplevel.destroy()

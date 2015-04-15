@@ -51,7 +51,8 @@ class SmartAlarm(Tkinter.Tk):
         newTime = time.strftime("%H:%M")
         # if currTime string has changed, update it
         if newTime != self.currTime:
-            if '00' == newTime[3:]:
+            #if '00' == newTime[3:]:
+            if True:
                 self.updateCalendar()
                 self.updateWeather()
                 alarmTuple = self.API.setAlarm(self.events, self.raining)
