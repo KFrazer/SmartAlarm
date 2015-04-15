@@ -32,7 +32,7 @@ class SmartAlarm(Tkinter.Tk):
         self.setLightColor('DAYLIGHT')
         
         self.initialize()
-        #self.overrideredirect(True) #Gets rid of title bar
+        self.overrideredirect(True) #Gets rid of title bar
 
     def initialize(self):  
         self.updateCalendar()
@@ -111,6 +111,7 @@ class SmartAlarm(Tkinter.Tk):
             self.sound.terminate()
             self.sound = None
         self.sound = Popen(['omxplayer', self.settings.alarmSound], stdin=PIPE)
+        
     
     def sleep(self):
         if self.alarmOn:
