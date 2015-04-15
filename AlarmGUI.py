@@ -6,9 +6,13 @@ class AlarmView:
         self.parent = parent
         self.settings = settings
         self.initialize()
+        #self.overrideredirect(True) #Gets rid of title bar
 
     def initialize(self):     
-        self.rightFrame = Frame(self.root, width = 72 , height = 202)
+        self.labels = {}
+    
+        self.rightFrame = Frame(self.root, width = 72)
+        self.rightFrame.place(x=243, y=20)
 
         self.bLights = Button(self.rightFrame, text="Lights", command = self.parent.lights)
         self.bLights.grid(row = 0, pady = 2)
@@ -22,11 +26,9 @@ class AlarmView:
         self.lTempLow.grid(row = 4)
         self.lPrecip = Label(self.rightFrame, text="")
         self.lPrecip.grid(row = 5)
-        Label(self.rightFrame, text="").grid(row = 6, pady = 6)
-        self.bAlarmSettings = Button(self.rightFrame, text="Settings", command = self.alarmSettings)
-        self.bAlarmSettings.grid(row = 7)
-        
+
         self.leftFrame = Frame(self.root, width = 70)
+        self.leftFrame.place(x=5, y=20)
         
         self.lLeftFrame = Label(self.leftFrame, text="Events")
         self.lLeftFrame.grid(row = 0)
@@ -36,16 +38,15 @@ class AlarmView:
         self.lEvent2.grid(row = 2)
         self.lEvent3 = Label(self.leftFrame, text="")
         self.lEvent3.grid(row = 3)
-
+        
+        self.bAlarmSettings = Button(self.root, text="Settings", command = self.alarmSettings)
+        self.bAlarmSettings.place(x=240, y=200)
         
         self.lAlarm = Label(self.root, text='')
         self.lAlarm.place(x=5, y=205)
         
         self.lTime = Label(self.root, text="", font=('Helvetica', 40))
-        
-        self.leftFrame.pack(side=LEFT, anchor='nw', padx = 5, pady = 20)
-        self.lTime.pack(side=LEFT, expand = 'true')
-        self.rightFrame.pack(side=LEFT, anchor='e', padx = 5, pady = 18)
+        self.lTime.place(x=90, y=90)
         
     def alarmSettings(self):
         self.toplevel = Toplevel()
