@@ -52,7 +52,7 @@ class AlarmView:
         self.toplevel.title('Settings')
         self.toplevel.geometry('+10+10')
         self.toplevel.focus()
-        self.toplevel.overrideredirect(1)
+        self.toplevel.attributes('-fullscreen', True)
         
         self.lDefaultAlarm = Label(self.toplevel, text='Default Alarm:')
         self.lDefaultAlarm.grid(row = 0)
