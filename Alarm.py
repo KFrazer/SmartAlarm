@@ -22,6 +22,7 @@ class SmartAlarm(Tkinter.Tk):
 
         self.alarmOn = False
         self.sleepOn = False
+        self.sound = None
 
         self.bulbs = find_bulbs(expected_bulbs=1)
         self.SUNSET_RED = ('SUNSET_RED', 0, 0.20, 0.95, 2000) #in HSV
@@ -31,7 +32,7 @@ class SmartAlarm(Tkinter.Tk):
         self.setLightColor('DAYLIGHT')
         
         self.initialize()
-        self.overrideredirect(True) #Gets rid of title bar
+        #self.overrideredirect(True) #Gets rid of title bar
 
     def initialize(self):  
         self.updateCalendar()
@@ -108,6 +109,7 @@ class SmartAlarm(Tkinter.Tk):
         if self.sound is not None:
             self.sound.communicate('q')
             self.sound.terminate()
+            self.sound = None
         self.sound = Popen(['omxplayer', self.settings.alarmSound], stdin=PIPE)
     
     def sleep(self):
@@ -116,8 +118,10 @@ class SmartAlarm(Tkinter.Tk):
             set_power(self.bulbs, False)
             self.bulbs_power = False
             self.sleepOn = True
-            self.sound.communicate('q')
-            self.sound.terminate()
+            if self.sound is not None:
+                self.sound.communicate('q')
+                self.sound.terminate()
+                self.sound = None
             self.sleepCallback = Timer(self.settings.sleepTimer, self.soundAlarm)
             self.sleepCallback.start()
         else:
