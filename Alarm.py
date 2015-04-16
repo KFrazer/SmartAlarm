@@ -73,6 +73,9 @@ class SmartAlarm(Tkinter.Tk):
         if self.alarmOn is True and self.sound is not None and self.sound.poll() is not None:
                 self.sound = Popen(['omxplayer', 'WakeMeUp.ogg'], stdin=PIPE)
         
+        if self.alarmOn is not True and  self.sleepOn is not True and self.view.bLights['text'] is 'Alarm Off':
+            self.view.bLights['text']= 'Lights'
+        
         #calls itself after 5 seconds
         self.after(5000, self.GUITimer)
     
@@ -108,6 +111,7 @@ class SmartAlarm(Tkinter.Tk):
             
     def soundAlarm(self):
         self.alarmOn = True
+        self.view.bLights.config(text='Alarm Off')
         if self.sleepOn:
             self.sleepOn = False
         self.setLightColor('MORNING_BLUE')
@@ -143,6 +147,7 @@ class SmartAlarm(Tkinter.Tk):
         else:
             if self.sleepOn:
                 self.setLightColor('MORNING_BLUE')
+                self.view.bLights.config(text='Lights')
                 self.sleepCallback.cancel()
                 self.sleepOn = False
             else:
