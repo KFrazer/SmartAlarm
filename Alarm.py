@@ -23,8 +23,11 @@ class SmartAlarm(Tkinter.Tk):
         self.alarmOn = False
         self.sleepOn = False
         self.sound = None
-
-        self.bulbs = find_bulbs(expected_bulbs=1)
+        
+        try:
+            self.bulbs = find_bulbs(expected_bulbs=1)
+        except:
+            print "No internet connection."
         self.SUNSET_RED = ('SUNSET_RED', 0, 0.20, 0.95, 2000) #in HSV
         self.MORNING_BLUE = ('MORNING_BLUE', 210, 0.20, 0.90, 2000) #in HSV
         self.DAYLIGHT = ('DAYLIGHT', 0, 0, 1, 4500) #in Kelvin
@@ -157,7 +160,10 @@ class SmartAlarm(Tkinter.Tk):
         self.bulbs_color = lColor[0]
             
     def resetBulbs(self):
-        self.bulbs = find_bulbs(expected_bulbs=1)
+        try:
+            self.bulbs = find_bulbs(expected_bulbs=1)
+        except:
+            print "No internet connection."
         
     def saveSettings(self):
         defaultHour = self.view.sDefaultHour.get()
