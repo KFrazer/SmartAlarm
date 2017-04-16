@@ -24,15 +24,13 @@ from oauth2client.tools import run_flow
 import AlarmModel
 
 class APIMethods:
-    def __init__(self):
+    def __init__(self, client_id, client_secret):
         self.settings = AlarmModel.Settings()
         #dimmer = ?18?
         #wiringpi.wiringPiSetup()
         #wiringpi.pinMode(dimmer, 2) #Just to note- dimmer is the pin number for BCM 18. Not sure what to number that here.
         
         # Arguments for flow, from Google API
-        client_id = '27689042960-3e573n9cu3c3sdguk4l6nrdgi8i4des7.apps.googleusercontent.com'
-        client_secret = 'SHfaJI6K8XJbKfhgZcoKfv4t'
         scope = 'https://www.googleapis.com/auth/calendar'
         redirect_uri = 'urn:ietf:wg:oauth:2.0:oob'
 
